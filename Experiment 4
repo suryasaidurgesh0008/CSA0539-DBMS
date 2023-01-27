@@ -1,0 +1,8 @@
+mysql> select * from student_marksheets
+    -> where studentage=21;
++------------+-------------+------------+---------------+
+| registerno | studentname | studentage | studentnumber |
++------------+-------------+------------+---------------+
+|  192110284 | bhargav     |         21 |          NULL |
++------------+-------------+------------+---------------+
+1 row in set (0.00 sec)
