@@ -1,0 +1,59 @@
+Enter password: **********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database exp6;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use exp6;
+Database changed
+mysql> create table exp6 ( id int (10),name varchar(21),age int(11),gender varchar(12));
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> desc exp6;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int(10)     | YES  |     | NULL    |       |
+| name   | varchar(21) | YES  |     | NULL    |       |
+| age    | int(11)     | YES  |     | NULL    |       |
+| gender | varchar(12) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.19 sec)
+
+mysql> insert into exp6 values(01,'veera',13,'m');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into exp6 values (02,'ravi',14,'m');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into exp6 values (03,'mahi',15,'f');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select *from exp6;
++------+-------+------+--------+
+| id   | name  | age  | gender |
++------+-------+------+--------+
+|    1 | veera |   13 | m      |
+|    2 | ravi  |   14 | m      |
+|    3 | mahi  |   15 | f      |
++------+-------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select name from exp6 where age between 14 and 16;
++------+
+| name |
++------+
+| ravi |
+| mahi |
++------+
+2 rows in set (0.06 sec)
