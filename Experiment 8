@@ -1,0 +1,40 @@
+
+mysql> select*from students;
++-----------+--------+------+------+-----------+-------------+
+| regno     | name   | sex  | age  | standeard | fav_subject |
++-----------+--------+------+------+-----------+-------------+
+| 192110008 | Surya  | male |   19 |        12 | NULL        |
+| 192110081 | Siva   | male |   18 |        12 | NULL        |
+| 192110195 | shesu  | male |   17 |        11 | NULL        |
+| 192110009 | Chandu | male |   19 |        12 | NULL        |
++-----------+--------+------+------+-----------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select*from facualty;
++------+----------+------+--------+------------+------------+
+| idno | name     | age  | sex    | department | Occpuation |
++------+----------+------+--------+------------+------------+
+| 1101 | Radhika  |   45 | female | Physics    | NULL       |
+| 1102 | Lakshman |   48 | male   | Maths      | NULL       |
+| 1103 | Karthik  |   44 | male   | Chemistary | NULL       |
+| 1104 | Lakshmi  |   36 | female | computer   | NULL       |
++------+----------+------+--------+------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select students.name,students.standeard,facualty.name,facualty.department
+    -> from students
+    -> inner join facualty
+    -> on students.sex = facualty.sex;
++--------+-----------+----------+------------+
+| name   | standeard | name     | department |
++--------+-----------+----------+------------+
+| Chandu |        12 | Lakshman | Maths      |
+| shesu  |        11 | Lakshman | Maths      |
+| Siva   |        12 | Lakshman | Maths      |
+| Surya  |        12 | Lakshman | Maths      |
+| Chandu |        12 | Karthik  | Chemistary |
+| shesu  |        11 | Karthik  | Chemistary |
+| Siva   |        12 | Karthik  | Chemistary |
+| Surya  |        12 | Karthik  | Chemistary |
++--------+-----------+----------+------------+
+8 rows in set (0.00 sec)
