@@ -1,0 +1,35 @@
+mysql> use students;
+Database changed
+mysql> create user surya@Saidurgesh identified by 'ssd8143';
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show grants for surya@Saidurgesh;
++--------------------------------------------+
+| Grants for surya@saidurgesh                |
++--------------------------------------------+
+| GRANT USAGE ON *.* TO `surya`@`saidurgesh` |
++--------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> grant all on studentsdb.* to surya@Saidurgesh;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for surya@Saidurgesh;
++----------------------------------------------------------------+
+| Grants for surya@saidurgesh                                    |
++----------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `surya`@`saidurgesh`                     |
+| GRANT ALL PRIVILEGES ON `studentsdb`.* TO `surya`@`saidurgesh` |
++----------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke all, grant option from surya@Saidurgesh;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for surya@Saidurgesh;
++--------------------------------------------+
+| Grants for surya@saidurgesh                |
++--------------------------------------------+
+| GRANT USAGE ON *.* TO `surya`@`saidurgesh` |
++--------------------------------------------+
+1 row in set (0.00 sec)
