@@ -1,0 +1,48 @@
+mysql> use students;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_students |
++--------------------+
+| student_account    |
+| students           |
++--------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from students;
++------+---------+------+--------+-----------+
+| idno | name    | age  | sex    | regno     |
++------+---------+------+--------+-----------+
+|    1 | Surya   |   19 | male   |  19211008 |
+|    2 | Siva    |   18 | male   | 192110081 |
+|    3 | Lakshmi |   18 | female | 192110015 |
+|    4 | Sai     |   17 | male   | 192110195 |
++------+---------+------+--------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> create view HOD as select idno,name,age and regno
+    -> from students;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select*from HOD;
++------+---------+---------------+
+| idno | name    | age and regno |
++------+---------+---------------+
+|    1 | Surya   |             1 |
+|    2 | Siva    |             1 |
+|    3 | Lakshmi |             1 |
+|    4 | Sai     |             1 |
++------+---------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> create index regno on students(regno);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from students;
++----------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table    | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++----------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| students |          1 | regno    |            1 | regno       | A         |           4 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
++----------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+1 row in set (0.00 sec)
