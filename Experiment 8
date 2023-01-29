@@ -38,3 +38,86 @@ mysql> select students.name,students.standeard,facualty.name,facualty.department
 | Surya  |        12 | Karthik  | Chemistary |
 +--------+-----------+----------+------------+
 8 rows in set (0.00 sec)
+mysql> select *from students;
++------+---------+------+--------+-----------+
+| idno | name    | age  | sex    | regno     |
++------+---------+------+--------+-----------+
+|    1 | Surya   |   19 | male   |  19211008 |
+|    2 | Siva    |   18 | male   | 192110081 |
+|    3 | Lakshmi |   18 | female | 192110015 |
+|    4 | Sai     |   17 | male   | 192110195 |
++------+---------+------+--------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select*from student_account;
++------+-----------+----------+
+| idno | regno     | bankname |
++------+-----------+----------+
+|    1 |  19211008 | SBI      |
+|    2 | 192110081 | UNION    |
+|    3 | 192110015 | HDFC     |
+|    4 | 192110195 | SBI      |
++------+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select stud.name,stud_account.bankname
+    -> from students as stud,student_account as stud_account
+    -> where stud.regno = stud_account.regno;
++---------+----------+
+| name    | bankname |
++---------+----------+
+| Surya   | SBI      |
+| Siva    | UNION    |
+| Lakshmi | HDFC     |
+| Sai     | SBI      |
++---------+----------+
+4 rows in set (0.00 sec)
+mysql> select * from students;
++------+---------+------+--------+-----------+
+| idno | name    | age  | sex    | regno     |
++------+---------+------+--------+-----------+
+|    1 | Surya   |   19 | male   |  19211008 |
+|    2 | Siva    |   18 | male   | 192110081 |
+|    3 | Lakshmi |   18 | female | 192110015 |
+|    4 | Sai     |   17 | male   | 192110195 |
++------+---------+------+--------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student_account;
++------+-----------+----------+
+| idno | regno     | bankname |
++------+-----------+----------+
+|    1 |  19211008 | SBI      |
+|    2 | 192110081 | UNION    |
+|    3 | 192110015 | HDFC     |
+|    4 | 192110195 | SBI      |
++------+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select students.name,students.age,student_account.regno,student_account.bankname
+    -> from students
+    -> left join student_account
+    -> on students.idno = student_account.idno;
++---------+------+-----------+----------+
+| name    | age  | regno     | bankname |
++---------+------+-----------+----------+
+| Surya   |   19 |  19211008 | SBI      |
+| Siva    |   18 | 192110081 | UNION    |
+| Lakshmi |   18 | 192110015 | HDFC     |
+| Sai     |   17 | 192110195 | SBI      |
++---------+------+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select students.name,students.age,student_account.regno,student_account.bankname
+    -> from students
+    -> right join student_account
+    -> on students.idno = student_account.idno;
++---------+------+-----------+----------+
+| name    | age  | regno     | bankname |
++---------+------+-----------+----------+
+| Surya   |   19 |  19211008 | SBI      |
+| Siva    |   18 | 192110081 | UNION    |
+| Lakshmi |   18 | 192110015 | HDFC     |
+| Sai     |   17 | 192110195 | SBI      |
++---------+------+-----------+----------+
+4 rows in set (0.00 sec)
