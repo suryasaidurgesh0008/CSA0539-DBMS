@@ -1,0 +1,58 @@
+mysql> create table workers(
+    -> name varchar(45),
+    -> occpuation varchar(45),
+    -> workjoindate date,
+    -> working_hours varchar(10)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into workers values
+    -> ('surya','associateproff','2022-10-4',12
+    ),('sai','engineer','2022-10-4',10),('lakshman','business','2022-10-02',11),('lakshmi','Doctor','2022-10-01',13);
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from workers;
++----------+----------------+--------------+---------------+
+| name     | occpuation     | workjoindate | working_hours |
++----------+----------------+--------------+---------------+
+| surya    | associateproff | 2022-10-04   | 12            |
+| sai      | engineer       | 2022-10-04   | 10            |
+| lakshman | business       | 2022-10-02   | 11            |
+| lakshmi  | Doctor         | 2022-10-01   | 13            |
++----------+----------------+--------------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger before_insert_workerworking_hours
+    -> before insert on workers for each row
+    -> begin
+    -> if new.working_hours < 0 then set new.working_hours = 0;
+    -> end if;
+    -> end//
+Query OK, 0 rows affected (0.01 sec)
+mysql> insert into workers values
+    -> ('Alex','actor','2022-10-04',-13);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from workers;
++----------+----------------+--------------+---------------+
+| name     | occpuation     | workjoindate | working_hours |
++----------+----------------+--------------+---------------+
+| surya    | associateproff | 2022-10-04   | 12            |
+| sai      | engineer       | 2022-10-04   | 10            |
+| lakshman | business       | 2022-10-02   | 11            |
+| lakshmi  | Doctor         | 2022-10-01   | 13            |
+| Alex     | actor          | 2022-10-04   | 0             |
++----------+----------------+--------------+---------------+
+5 rows in set (0.00 sec)
+mysql> show triggers;
++-----------------------------------+--------+---------+----------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger                           | Event  | Table   | Statement                                                                  | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++-----------------------------------+--------+---------+----------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| before_insert_workerworking_hours | INSERT | workers | begin
+if new.working_hours < 0 then set new.working_hours = 0;
+end if;
+end | BEFORE | 2023-01-29 12:23:44.31 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | cp850                | cp850_general_ci     | utf8mb4_0900_ai_ci |
++-----------------------------------+--------+---------+----------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+1 row in set (0.01 sec)
