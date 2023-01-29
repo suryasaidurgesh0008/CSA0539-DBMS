@@ -1,0 +1,97 @@
+mysql> use school;
+Database changed
+mysql> desc school;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| regno     | int(4)      | YES  |     | NULL    |       |
+| name      | varchar(20) | YES  |     | NULL    |       |
+| standered | int(2)      | YES  |     | NULL    |       |
+| city      | varchar(22) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> select * from school;
++-------+-------+-----------+-------+
+| regno | name  | standered | city  |
++-------+-------+-----------+-------+
+|   303 | ram   |         9 | tpt   |
+|   308 | sam   |        10 | mum   |
+|   357 | sita  |         8 | chen  |
+|   374 | bala  |        11 | delhi |
+|   411 | veera |        12 | ooty  |
++-------+-------+-----------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select standered from school where regno>310;
++-----------+
+| standered |
++-----------+
+|         8 |
+|        11 |
+|        12 |
++-----------+
+3 rows in set (0.00 sec)
+
+mysql> select standered from school where city>f;
+ERROR 1054 (42S22): Unknown column 'f' in 'where clause'
+mysql> select standered from school where city>'f';
++-----------+
+| standered |
++-----------+
+|         9 |
+|        10 |
+|        12 |
++-----------+
+3 rows in set (0.00 sec)
+
+mysql> select regno from school where city>'f';
++-------+
+| regno |
++-------+
+|   303 |
+|   308 |
+|   411 |
++-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from school where regno>310;
++-------+-------+-----------+-------+
+| regno | name  | standered | city  |
++-------+-------+-----------+-------+
+|   357 | sita  |         8 | chen  |
+|   374 | bala  |        11 | delhi |
+|   411 | veera |        12 | ooty  |
++-------+-------+-----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from school order by standered limit 2;
++-------+------+-----------+------+
+| regno | name | standered | city |
++-------+------+-----------+------+
+|   357 | sita |         8 | chen |
+|   303 | ram  |         9 | tpt  |
++-------+------+-----------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from school order by standered limit 4;
++-------+------+-----------+-------+
+| regno | name | standered | city  |
++-------+------+-----------+-------+
+|   357 | sita |         8 | chen  |
+|   303 | ram  |         9 | tpt   |
+|   308 | sam  |        10 | mum   |
+|   374 | bala |        11 | delhi |
++-------+------+-----------+-------+
+4 rows in set (0.01 sec)
+
+mysql> select name,standered from school where regno>305 order by name;
++-------+-----------+
+| name  | standered |
++-------+-----------+
+| bala  |        11 |
+| sam   |        10 |
+| sita  |         8 |
+| veera |        12 |
++-------+-----------+
+4 rows in set (0.00 sec)
