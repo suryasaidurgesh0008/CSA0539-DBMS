@@ -1,0 +1,81 @@
+mysql> use students;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_students |
++--------------------+
+| hod                |
+| student_account    |
+| students           |
+| workers            |
++--------------------+
+4 rows in set (0.04 sec)
+
+mysql> select * from workers
+    -> ;
++----------+----------------+--------------+---------------+
+| name     | occpuation     | workjoindate | working_hours |
++----------+----------------+--------------+---------------+
+| surya    | associateproff | 2022-10-04   | 12            |
+| sai      | engineer       | 2022-10-04   | 10            |
+| lakshman | business       | 2022-10-02   | 11            |
+| lakshmi  | Doctor         | 2022-10-01   | 13            |
+| Alex     | actor          | 2022-10-04   | 0             |
++----------+----------------+--------------+---------------+
+5 rows in set (0.01 sec)
+
+mysql> select count(name) from workers;
++-------------+
+| count(name) |
++-------------+
+|           5 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(working_hours) as "total working hours" from workers;
++---------------------+
+| total working hours |
++---------------------+
+|                  46 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(working_hours) as "average_working_hours" from workers;
++-----------------------+
+| average_working_hours |
++-----------------------+
+|                   9.2 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select min(working_hours) as Minimum_working_hours from workers;
++-----------------------+
+| Minimum_working_hours |
++-----------------------+
+| 0                     |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select max(working_hours) as Maximum_working_hours from workers;
++-----------------------+
+| Maximum_working_hours |
++-----------------------+
+| 13                    |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select workjoindate from workers limit 1;
++--------------+
+| workjoindate |
++--------------+
+| 2022-10-04   |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select working_hours from workers order by name desc limit 1;
++---------------+
+| working_hours |
++---------------+
+| 12            |
++---------------+
+1 row in set (0.00 sec)
